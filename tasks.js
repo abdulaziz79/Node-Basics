@@ -83,6 +83,8 @@ function quit(){
 // The following line starts the application
 startApp("Abdulaziz")
 
+
+//the following function displays all the available commands 
 function showHelp() {
   console.log('Available commands:');
   console.log('  - hello:says hello!');

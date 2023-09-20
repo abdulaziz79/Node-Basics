@@ -38,7 +38,7 @@ function onDataReceived(text) {
   if (text === 'quit\n' || text ==='exit\n') {
     quit();
   }
-  else if (input.includes("hello")){
+  else if (input.startsWith("hello")){
     const args=input.split(" ")
     if(args.length>1){
       const name=args.slice(1).join(' ');
@@ -98,6 +98,7 @@ startApp("Abdulaziz")
 function showHelp() {
   console.log('Available commands:');
   console.log('  - hello:says hello!');
+  console.log('  - hello "your name":says hello your name!');
   console.log('  - help: Show available commands');
   console.log('  - exit/quit: Exit the application');
 }

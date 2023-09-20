@@ -34,11 +34,18 @@ function startApp(name){
  * @returns {void}
  */
 function onDataReceived(text) {
+  const input = text.replace('\n', '').trim();
   if (text === 'quit\n' || text ==='exit\n') {
     quit();
   }
-  else if(text === 'hello\n'){
-    hello();
+  else if (input.includes("hello")){
+    const args=input.split(" ")
+    if(args.length>1){
+      const name=args.slice(1).join(' ');
+      hello(name)
+    }else {
+      hello(" ")
+    }
   }
   else if (text === 'help\n') {
     showHelp();}
@@ -65,8 +72,11 @@ function unknownCommand(c){
  *
  * @returns {void}
  */
-function hello(){
-  console.log('hello!')
+function hello(name){
+  if (name ===" "){
+    console.log("hello!")
+  }else
+  console.log(`hello ${name}!`)
 }
 
 

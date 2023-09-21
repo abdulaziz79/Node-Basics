@@ -56,6 +56,9 @@ function onDataReceived(text) {
   else if(text.trim().split(" ")[0]==='remove'){
     remove(text);
   }
+  else if (text.trim().slice(0,4)==='edit'){
+    edit(text);
+  }
   else if (text === 'help\n') {
     showHelp();}
   else{
@@ -159,3 +162,15 @@ function remove(text){
   //  }
 
 
+function edit(text){
+  var editTwo=text.trim().split(' ')
+  var num=parseInt(editTwo[1])
+  if(editTwo.length===1){
+    console.log("error")
+  }else if(editTwo.length===2){
+    task.pop();
+    task.push(editTwo[1])
+  }else{
+    task.splice(num-1,1 ,editTwo[2]);
+  }
+}

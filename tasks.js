@@ -47,6 +47,9 @@ function onDataReceived(text) {
       hello(" ")
     }
   }
+  else if(text==='list\n'){
+    listTasks();
+  }
   else if (text === 'help\n') {
     showHelp();}
   else{
@@ -101,4 +104,13 @@ function showHelp() {
   console.log('  - hello "your name":says hello your name!');
   console.log('  - help: Show available commands');
   console.log('  - exit/quit: Exit the application');
+}
+
+const task =["list","add", "remove"]
+
+function listTasks() {
+  console.log("Tasks:");
+  task.forEach((task, index) => {
+    console.log(`${index + 1}. ${task}`);
+  });
 }

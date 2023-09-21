@@ -107,6 +107,10 @@ startApp("Abdulaziz")
 function showHelp() {
   console.log('Available commands:');
   console.log('  - hello:says hello!');
+  console.log('  - list:lists all tasks');
+  console.log('  - add x:will add the x to the task');
+  console.log('  - remove:will remove the last task');
+  console.log('  - remove i:will remove the the index you choose');
   console.log('  - hello "your name":says hello your name!');
   console.log('  - help: Show available commands');
   console.log('  - exit/quit: Exit the application');

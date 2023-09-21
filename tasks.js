@@ -50,6 +50,12 @@ function onDataReceived(text) {
   else if(text==='list\n'){
     listTasks();
   }
+  else if(text.trim().split(" ")[0]==='add'){
+    addToList(text);
+  }
+  else if(text.trim().split(" ")[0]==='remove'){
+    remove(text);
+  }
   else if (text === 'help\n') {
     showHelp();}
   else{
@@ -113,4 +119,22 @@ function listTasks() {
   task.forEach((task, index) => {
     console.log(`${index + 1}. ${task}`);
   });
+}
+
+function addToList(text){
+  let addTask= text.slice(4);
+  if(addTask.length >0){
+    task.push(addTask)
+
+  }
+  
+}
+function remove(text){
+  let secondW=text.trim().split(' ')[1]
+  if(secondW==undefined){
+    task.pop()
+  }
+  else{
+    
+  }
 }

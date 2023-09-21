@@ -1,3 +1,5 @@
+const { isUtf8 } = require('buffer');
+const { error } = require('console');
 
 /**
  * Starts the application
@@ -9,12 +11,24 @@
  * @param  {string} name the name of the app
  * @returns {void}
  */
-function startApp(name){
+async function startApp(name){
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
   process.stdin.on('data', onDataReceived);
   console.log(`Welcome to ${name}'s application!`)
   console.log("--------------------")
+   
+  const fs =require('fs')
+
+  try{
+await fs.readFile("database.json", {encoding: 'utf-8'}, (error, loadData)=>{
+  taskArr=JSON.parse(loadData)
+})
+
+  }
+  catch(error){
+    console.log(error)
+  }
 }
 
 
@@ -105,7 +119,23 @@ function hello(name){
  *
  * @returns {void}
  */
-function quit(){
+
+const fs = require('fs').promises;
+
+async function quit(){
+
+  const jsonData = JSON.stringify(taskArr);
+
+  try{
+    await fs.writeFile("database.json", jsonData,{encoding : 'utf-8'});
+    console.log("donne")
+
+  }
+  catch(error){
+    console.log(error)
+
+  }
+
   console.log('Quitting now, goodbye!')
   process.exit();
 }
@@ -129,7 +159,7 @@ function showHelp() {
   console.log('  - exit/quit: Exit the application');
 }
 
-const taskArr =[]
+let taskArr =[]
 
 function listTasks() {
   let check="[ ]"

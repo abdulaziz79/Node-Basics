@@ -11,6 +11,30 @@ const { error } = require('console');
  * @param  {string} name the name of the app
  * @returns {void}
  */
+let loadedFile='database.json'
+const process=require('process')
+const fs =require('fs')
+
+var args=process.argv
+if (args[2]){
+  loadedFile=args[2]
+}
+
+let newArr=[]
+let readData=JSON.stringify(newArr)
+
+if(fs.existsSync(loadedFile)){
+  console.log('already exist')
+  
+}else{
+  fs.appendFile(loadedFile, readData,(err)=>{
+if (err) console.log(err)
+  })
+
+}
+
+
+
 async function startApp(name){
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
@@ -21,7 +45,7 @@ async function startApp(name){
   const fs =require('fs')
 
   try{
-await fs.readFile("database.json", {encoding: 'utf-8'}, (error, loadData)=>{
+await fs.readFile(loadedFile, {encoding: 'utf-8'}, (error, loadData)=>{
   taskArr=JSON.parse(loadData)
 })
 
@@ -120,14 +144,15 @@ function hello(name){
  * @returns {void}
  */
 
-const fs = require('fs').promises;
+
 
 async function quit(){
 
   const jsonData = JSON.stringify(taskArr);
+  const fs = require('fs').promises;
 
   try{
-    await fs.writeFile("database.json", jsonData,{encoding : 'utf-8'});
+    await fs.writeFile(loadedFile, jsonData,{encoding : 'utf-8'});
     console.log("donne")
 
   }

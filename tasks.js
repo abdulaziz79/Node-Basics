@@ -134,7 +134,7 @@ function remove(text){
   if(secondW==undefined){
     task.pop()
   }
-  else{
-    
+  else {
+    task.splice((secondW-1),1)
   }
 }

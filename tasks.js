@@ -59,6 +59,14 @@ function onDataReceived(text) {
   else if (text.trim().slice(0,4)==='edit'){
     edit(text);
   }
+  else if(text.trim().split(" ")[0]==='check'){
+    let nums=text.split(" ")[1]
+    check(nums)
+  }
+  else if(text.trim().split(" ")[0]==='uncheck'){
+    let nums=text.split(" ")[1]
+    uncheck(nums)
+  }
   else if (text === 'help\n') {
     showHelp();}
   else{
@@ -119,19 +127,23 @@ function showHelp() {
   console.log('  - exit/quit: Exit the application');
 }
 
-const task =["list","add", "remove"]
+const taskArr =[]
 
 function listTasks() {
+  let check="[ ]"
   console.log("Tasks:");
-  task.forEach((task, index) => {
-    console.log(`${index + 1}. ${task}`);
+  taskArr.forEach((task, index) => {
+    if(taskArr[index].status==true) check = "[✓]"
+    console.log(`${index + 1}. ${check} ${taskArr[index].task}`);
+    check="[ ]"
   });
 }
 
 function addToList(text){
   let addTask= text.slice(4);
+  let newObj = {task: addTask, status: false}
   if(addTask.length >0){
-    task.push(addTask)
+    taskArr.push(newObj)
 
   }
   
@@ -140,12 +152,12 @@ function remove(text){
   var secondW=text.trim().split(' ')[1]
   // for(let i=0;i<task.length; i++){
   if(secondW==undefined){
-    task.pop()
-  }else if(secondW> task.length){
+    taskArr.pop()
+  }else if(secondW> taskArr.length){
     console.log("this number doesn't exist")
   }
      else {
-        task.splice((secondW-1),1)
+        taskArr.splice((secondW-1),1)
       }
     }
 
@@ -168,9 +180,17 @@ function edit(text){
   if(editTwo.length===1){
     console.log("error")
   }else if(editTwo.length===2){
-    task.pop();
-    task.push(editTwo[1])
+    taskArr.pop();
+    taskArr.push(editTwo[1])
   }else{
-    task.splice(num-1,1 ,editTwo[2]);
+    taskArr.splice(num-1,1 ,editTwo[2]);
   }
+}
+
+
+function check(nums){
+  taskArr[nums -1].status=true;
+}
+function uncheck(nums){
+  taskArr[nums -1].status=false;
 }

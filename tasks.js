@@ -124,6 +124,8 @@ function showHelp() {
   console.log('  - remove i:will remove the the index you choose');
   console.log('  - hello "your name":says hello your name!');
   console.log('  - help: Show available commands');
+  console.log('  - check: the task will be checked');
+  console.log('  - uncheck:will uncheck  ');
   console.log('  - exit/quit: Exit the application');
 }
 

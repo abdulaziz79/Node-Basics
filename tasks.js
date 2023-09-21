@@ -134,11 +134,28 @@ function addToList(text){
   
 }
 function remove(text){
-  let secondW=text.trim().split(' ')[1]
+  var secondW=text.trim().split(' ')[1]
+  // for(let i=0;i<task.length; i++){
   if(secondW==undefined){
     task.pop()
+  }else if(secondW> task.length){
+    console.log("this number doesn't exist")
   }
-  else {
-    task.splice((secondW-1),1)
-  }
-}
+     else {
+        task.splice((secondW-1),1)
+      }
+    }
+
+  
+  
+//}  // else if(secondW){
+  //   for(let i =0 ; i<task.length; i++){
+  //     if(secondW != task[i+1]){
+  //       console.log("this number doesn't exist")
+  //     }
+  //  function remove(text){
+  //   var secondW=text.trim().split(' ')[1]
+  //   task.splice((secondW-1),1)
+  //  }
+
+
